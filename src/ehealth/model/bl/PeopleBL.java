@@ -50,7 +50,8 @@ public interface PeopleBL {
     public HealthMeasureHistory readPersonMeasure(@WebParam(name="idPerson") Long idPerson,@WebParam(name="measureType") String measureType,@WebParam(name="mid") Long mid);
 
     @WebMethod(operationName="savePersonMeasure")
-    public void savePersonMeasure(@WebParam(name="idPerson") Long id,@WebParam(name="measure") HealthMeasureHistory healthMeasureHistory);
+    @WebResult
+    public HealthMeasureHistory savePersonMeasure(@WebParam(name="idPerson") Long id,@WebParam(name="measure") HealthMeasureHistory healthMeasureHistory);
 
     @WebMethod(operationName="updatePersonMeasure")
     @WebResult

@@ -17,7 +17,7 @@ public class App
         {
             HOSTNAME = "localhost";
         }
-        String PORT = "6900";
+        String PORT = "6901";
         String BASE_URL = "/ws/people";
 
         if (String.valueOf(System.getenv("PORT")) != "null"){

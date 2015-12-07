@@ -171,7 +171,7 @@ public class PeopleImpl implements PeopleBL
         try
         {
             int idMeasureDef = getMeasureDefinition(measureType).getIdMeasureDef();
-            healthMeasureHistory = new HealthMeasureHistoryDA().selectByPerson_MeasureDef_mId(idPerson, idMeasureDef, mid);
+            healthMeasureHistory = new HealthMeasureHistory(new HealthMeasureHistoryDA().selectByPerson_MeasureDef_mId(idPerson, idMeasureDef, mid));
         }catch (Exception e)
         {
             System.out.println(e.getMessage());
@@ -181,8 +181,9 @@ public class PeopleImpl implements PeopleBL
 
     //Method #9
     @Override
-    public void savePersonMeasure(Long id, HealthMeasureHistory healthMeasureHistory)
+    public HealthMeasureHistory savePersonMeasure(Long id, HealthMeasureHistory healthMeasureHistory)
     {
+        HealthMeasureHistory tmpHealthMeasureHistory = new HealthMeasureHistory();
         try
         {
             //a new person with id
@@ -193,11 +194,12 @@ public class PeopleImpl implements PeopleBL
 
             healthMeasureHistory.setPerson(person);
             healthMeasureHistory.setMeasureDefinition(measureDefinition);
-            new HealthMeasureHistoryDA().insert(healthMeasureHistory, false);
+            tmpHealthMeasureHistory = new HealthMeasureHistoryDA().insert(healthMeasureHistory, false);
         }catch (Exception e)
         {
             System.out.println(e.getMessage());
         }
+        return tmpHealthMeasureHistory;
     }
 
     //Method #10

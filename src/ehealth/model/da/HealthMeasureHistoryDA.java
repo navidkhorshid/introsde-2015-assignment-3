@@ -175,11 +175,11 @@ public class HealthMeasureHistoryDA {
 
     public HealthMeasureHistory update(HealthMeasureHistory healthMeasureHistory) throws Exception
     {
-        statement = connection.prepareStatement("UPDATE HealthMeasureHistory SET value=?, created=? WHERE idPerson = ? AND idMeasureDefinition=?");
+        statement = connection.prepareStatement("UPDATE HealthMeasureHistory SET value=?, created=? WHERE idPerson = ? AND idMeasureHistory=?");
         statement.setString(1, healthMeasureHistory.getValue());
         statement.setDate(2, new java.sql.Date(healthMeasureHistory.getCreated().getTime()));
         statement.setLong(3, healthMeasureHistory.getPerson().getIdPerson());
-        statement.setInt(4, healthMeasureHistory.getMeasureDefinition().getIdMeasureDef());
+        statement.setLong(4, healthMeasureHistory.getMid());
         statement.executeUpdate();
 
         //THIS MAKES ATOMICITY NOT WORKING
